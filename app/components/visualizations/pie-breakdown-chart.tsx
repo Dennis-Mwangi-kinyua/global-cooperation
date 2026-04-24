@@ -27,7 +27,7 @@ export default function PieBreakdownChart() {
         </p>
       </div>
 
-      <div className="mb-4 -mx-1 overflow-x-auto px-1">
+      <div className="-mx-1 mb-4 overflow-x-auto px-1">
         <div className="flex min-w-max gap-2">
           {rawData.map((item) => (
             <button
@@ -45,34 +45,39 @@ export default function PieBreakdownChart() {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="h-[340px] rounded-3xl border border-slate-200 bg-slate-50 p-2 sm:h-[420px] lg:h-[500px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                innerRadius={70}
-                outerRadius={130}
-                paddingAngle={3}
-              >
-                {pieData.map((entry) => (
-                  <Cell key={entry.name} fill={entry.color} />
-                ))}
-              </Pie>
+      <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+        <div className="min-w-0 rounded-3xl border border-slate-200 bg-slate-50 p-2">
+          <div
+            className="w-full min-w-0"
+            style={{ height: "clamp(320px, 50vh, 520px)" }}
+          >
+            <ResponsiveContainer width="100%" height="100%" minWidth={280} minHeight={300}>
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={70}
+                  outerRadius={130}
+                  paddingAngle={3}
+                >
+                  {pieData.map((entry) => (
+                    <Cell key={entry.name} fill={entry.color} />
+                  ))}
+                </Pie>
 
-              <Tooltip
-                content={<ProfessionalTooltip title={selectedArea} />}
-                wrapperStyle={{ outline: "none", zIndex: 40 }}
-                offset={14}
-              />
+                <Tooltip
+                  content={<ProfessionalTooltip title={selectedArea} />}
+                  wrapperStyle={{ outline: "none", zIndex: 40 }}
+                  offset={14}
+                />
 
-              <Legend wrapperStyle={{ fontSize: "12px" }} />
-            </PieChart>
-          </ResponsiveContainer>
+                <Legend wrapperStyle={{ fontSize: "12px" }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
         <div className="rounded-3xl border border-slate-200 bg-white p-4">
@@ -82,6 +87,7 @@ export default function PieBreakdownChart() {
           <h4 className="mt-2 text-lg font-semibold text-slate-900">
             {selectedArea}
           </h4>
+
           <div className="mt-4 space-y-3">
             {pieData.map((item) => (
               <div

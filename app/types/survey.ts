@@ -1,3 +1,10 @@
+export type SurveyMetricKey =
+  | "muchLess"
+  | "less"
+  | "same"
+  | "more"
+  | "muchMore";
+
 export type SurveyRow = {
   area: string;
   muchLess: number;
@@ -18,5 +25,3 @@ export type EnrichedSurveyRow = SurveyRow & {
   morePos: number;
   muchMorePos: number;
 };
-
-export type SurveyMetricKey = Exclude<keyof SurveyRow, "area">;

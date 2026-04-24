@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Global Cooperation Dashboard",
-  description: "Power BI-style survey presentation",
+  description: "Survey presentation dashboard",
 };
 
 export default function RootLayout({

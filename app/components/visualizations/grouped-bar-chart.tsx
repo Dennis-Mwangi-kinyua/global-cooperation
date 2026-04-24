@@ -10,17 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { metricMeta, rawData, tooltipLabel } from "../../lib/survey-data";
+import {
+  metricMeta,
+  rawData,
+  shortAreaLabel,
+  tooltipLabel,
+} from "../../lib/survey-data";
 import ProfessionalTooltip from "../professional-tooltip";
-
-function shortAxisLabel(value: string) {
-  if (value === "Innovation & Technology") return "Innovation & Tech";
-  if (value === "Climate & Natural Capital") return "Climate & Natural";
-  if (value === "Health & Wellness") return "Health & Wellness";
-  if (value === "Trade & Capital") return "Trade & Capital";
-  if (value === "Peace & Security") return "Peace & Security";
-  return value;
-}
 
 export default function GroupedBarChart() {
   return (
@@ -34,8 +30,11 @@ export default function GroupedBarChart() {
         </p>
       </div>
 
-      <div className="h-[360px] w-full sm:h-[430px] lg:h-[520px]">
-        <ResponsiveContainer width="100%" height="100%">
+      <div
+        className="w-full min-w-0"
+        style={{ height: "clamp(320px, 55vh, 560px)" }}
+      >
+        <ResponsiveContainer width="100%" height="100%" minWidth={280} minHeight={320}>
           <BarChart
             data={rawData}
             margin={{ top: 8, right: 8, left: 0, bottom: 70 }}
@@ -49,7 +48,7 @@ export default function GroupedBarChart() {
               interval={0}
               height={84}
               tick={{ fill: "#64748b", fontSize: 11 }}
-              tickFormatter={(value: string) => shortAxisLabel(value)}
+              tickFormatter={(value: string) => shortAreaLabel(value)}
             />
             <YAxis
               tick={{ fill: "#64748b", fontSize: 11 }}

@@ -11,12 +11,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { enrichedData, palette, tooltipLabel } from "../../lib/survey-data";
+import {
+  enrichedData,
+  palette,
+  tooltipLabel,
+  truncateLabel,
+} from "../../lib/survey-data";
 import ProfessionalTooltip from "../professional-tooltip";
-
-function truncateLabel(value: string) {
-  return value.length > 18 ? `${value.slice(0, 18)}…` : value;
-}
 
 export default function DivergingBarChart() {
   return (
@@ -31,8 +32,11 @@ export default function DivergingBarChart() {
         </p>
       </div>
 
-      <div className="h-[360px] w-full sm:h-[430px] lg:h-[520px]">
-        <ResponsiveContainer width="100%" height="100%">
+      <div
+        className="w-full min-w-0"
+        style={{ height: "clamp(320px, 55vh, 560px)" }}
+      >
+        <ResponsiveContainer width="100%" height="100%" minWidth={280} minHeight={320}>
           <BarChart
             data={enrichedData}
             layout="vertical"

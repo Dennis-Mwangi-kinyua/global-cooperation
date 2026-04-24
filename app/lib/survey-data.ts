@@ -105,3 +105,16 @@ export function alpha(hex: string, opacity: number) {
 
   return `rgba(${r}, ${g}, ${b}, ${safeOpacity})`;
 }
+
+export function shortAreaLabel(value: string) {
+  if (value === "Innovation & Technology") return "Innovation & Tech";
+  if (value === "Climate & Natural Capital") return "Climate & Natural";
+  if (value === "Health & Wellness") return "Health & Wellness";
+  if (value === "Trade & Capital") return "Trade & Capital";
+  if (value === "Peace & Security") return "Peace & Security";
+  return value;
+}
+
+export function truncateLabel(value: string, max = 18) {
+  return value.length > max ? `${value.slice(0, max)}…` : value;
+}
